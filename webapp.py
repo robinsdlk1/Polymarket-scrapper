@@ -6,7 +6,7 @@ from ts_data_parser import data_parser
 
 # -------- Parameters --------
 MARKET_ID = 516710
-REFRESH_INTERVAL_SECONDS = 300  # Vous pouvez modifier cette valeur
+REFRESH_INTERVAL_SECONDS = 30  # Vous pouvez modifier cette valeur
 
 # -------- Load data --------
 def load_data():
@@ -146,4 +146,4 @@ def update_timer(n):
 
 # -------- Run server --------
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(host='0.0.0.0', port=8050, debug=True)

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Accept market ID as first argument
 if [ -z "$1" ]; then
   echo "Usage: $0 <market_id>"
@@ -5,9 +7,10 @@ if [ -z "$1" ]; then
 fi
 MARKET_ID="$1"
 
-# Define output and temporary file paths based on the market ID
-OUTPUT_FILE="./db/market_${MARKET_ID}_history.csv"
-TMP_FILE="./tmp/market_${MARKET_ID}.json"
+# --------- BASE PATH ABSOLU ---------
+BASE_DIR="/home/ubuntu/robin/Taff/ESILV/S8/AGP/repo/Polymarket-scrapper"
+OUTPUT_FILE="$BASE_DIR/db/market_${MARKET_ID}_history.csv"
+TMP_FILE="$BASE_DIR/tmp/market_${MARKET_ID}.json"
 
 # Ensure the output directories exist
 mkdir -p "$(dirname "$OUTPUT_FILE")" "$(dirname "$TMP_FILE")"
@@ -35,3 +38,4 @@ JSON_ESCAPED=$(echo "$JSON_DATA" | sed 's/"/""/g')
 
 # Append timestamp and JSON to the CSV file (as a new line)
 echo "$TIMESTAMP;\"$JSON_ESCAPED\"" >> "$OUTPUT_FILE"
+
