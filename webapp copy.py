@@ -6,7 +6,7 @@ from ts_data_parser import data_parser
 
 # -------- Parameters --------
 MARKET_ID = 516710
-REFRESH_INTERVAL_SECONDS = 300  # Vous pouvez modifier cette valeur
+REFRESH_INTERVAL_SECONDS = 60  # Vous pouvez modifier cette valeur
 
 # -------- Load data --------
 def load_data():
@@ -26,27 +26,11 @@ app.layout = html.Div(style={"fontFamily": "Arial", "padding": "2rem", "backgrou
 
     dcc.Interval(
         id="interval-component",
-        interval=REFRESH_INTERVAL_SECONDS * 1000,
+        interval = REFRESH_INTERVAL_SECONDS * 1000,
         n_intervals=0
     ),
 
     html.Div(id="refresh-timer", style={"textAlign": "center", "fontSize": "1rem", "color": "#666", "marginBottom": "1rem"}),
-
-    html.Div([
-        html.Label("Select Time Range:", style={"fontWeight": "bold", "marginRight": "1rem"}),
-        dcc.Dropdown(
-            id="time-range-selector",
-            options=[
-                {"label": "All Data", "value": "all"},
-                {"label": "Last 7 Days", "value": "7d"},
-                {"label": "Last 30 Days", "value": "30d"},
-                {"label": "Last 90 Days", "value": "90d"},
-            ],
-            value="all",
-            style={"width": "300px", "marginBottom": "2rem"}
-        )
-    ], style={"textAlign": "center"}),
-
     html.Div(id="metrics-and-graphs")
 ])
 
@@ -56,16 +40,10 @@ import datetime
 
 @app.callback(
     Output("metrics-and-graphs", "children"),
-    Input("interval-component", "n_intervals"),
-    Input("time-range-selector", "value")
+    Input("interval-component", "n_intervals")
 )
-def update_layout(n, time_range):
+def update_layout(n):
     df = load_data()
-
-    if time_range != "all":
-        days = int(time_range.replace("d", ""))
-        df = df[df["timestamp"] >= (pd.Timestamp.now(tz="UTC") - pd.Timedelta(days=days))]
-
     latest = df.iloc[-1]
 
     return html.Div([
@@ -140,7 +118,7 @@ def update_layout(n, time_range):
     Input("interval-component", "n_intervals")
 )
 def update_timer(n):
-    now = datetime.datetime.now(datetime.UTC)
+    now = datetime.datetime.utcnow()
     next_refresh = now + datetime.timedelta(seconds=REFRESH_INTERVAL_SECONDS)
     return f"⏳ Next refresh scheduled at: {next_refresh.strftime('%Y-%m-%d %H:%M:%S UTC')}"
 
