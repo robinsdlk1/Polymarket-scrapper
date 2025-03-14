@@ -31,7 +31,7 @@ def get_daily_report_table(df):
     rows = [html.Tr([html.Td(round(row[col], 3) if isinstance(row[col], float) else row[col]) for col in report.columns]) for _, row in report.iterrows()]
 
     table = html.Div([
-        html.H3("📅 Daily Report Summary", style={"textAlign": "center", "marginTop": "3rem", "color": "#2c3e50"}),
+        html.H3("Daily Report Summary", style={"textAlign": "center", "marginTop": "3rem", "color": "#2c3e50"}),
         html.Table(header + rows, style={
             "width": "95%",
             "margin": "0 auto",
