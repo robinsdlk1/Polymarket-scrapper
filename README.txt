@@ -26,3 +26,6 @@ Setup Instructions
 2. Update the PATH variables in the .sh script.
 3. Setup the cron job.
 4. Run the dashboard.
+
+
+The main issue (backend) is with the scrapping consistency, we managed to get what looks like the api call in the loaded html but our extraction process showed inconsistencies in the way the data is displayed. To counteract this, we scrap the data to different files and do the intersection of the colums, hoping no important data is lost. Using the API would make this process much easier.
