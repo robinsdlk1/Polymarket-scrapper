@@ -18,7 +18,9 @@ echo "[INFO] Slug: $SLUG"
 BASE_DIR="/home/ubuntu/Polymarket_Scrapper"
 HTML_FILE="$BASE_DIR/db/html/polymarket_loaded_source.html"
 CSV_FILE="$BASE_DIR/db/csv/market_${SLUG}_history.csv"
-FLAT_CSV_FILE="$BASE_DIR/db/csv/market_${SLUG}_flatdata.csv"
+
+FLAT_CSV_FILE="$BASE_DIR/db/csv/snapshots/${SLUG}/flatdata_${TIMESTAMP}.csv"
+mkdir -p "$(dirname "$FLAT_CSV_FILE")"
 
 mkdir -p "$(dirname "$CSV_FILE")"
 
