@@ -11,7 +11,7 @@ from daily_report import get_daily_report_table, export_daily_report
 
 # -------- Parameters --------
 MARKET_SLUG = "us-recession-in-2025"
-REFRESH_INTERVAL_SECONDS = 300  # 5 minutes
+REFRESH_INTERVAL_SECONDS = 60  # 5 minutes
 DAILY_REPORT_PATH = f"db/market_{MARKET_SLUG}_daily_report.csv"
 
 # -------- Global variable to track daily update --------
@@ -324,7 +324,7 @@ def update_layout(n, time_range, selected_metrics_input, strike_price, ma_checkl
             put_output = f"Put Exp. Value: ${(1 - P) * max(0, strike_price):.4f}"
 
     return (
-        f"Polymarket Market - {latest.get('data_question', MARKET_SLUG)}",
+        f"Polymarket Market - {latest.get("data_title", MARKET_SLUG)}",
         metrics_options,
         selected_metrics,
         metrics_graphs_content,

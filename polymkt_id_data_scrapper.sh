@@ -1,4 +1,6 @@
-# Unfortunatly, Polymarket heavily uses Javascript. I was allowed to get the full source using a python script html_loader.py.
+# Unfortunatly, Polymarket heavily uses Javascript. I was allowed to get the full source using a python script html_loader.py, this means that the crontab will need to go to the correct python environement, dashenv in our case.
+
+source /home/ubuntu/dashenv/bin/activate
 
 # Check argument
 if [ -z "$1" ]; then
@@ -13,7 +15,7 @@ echo "[INFO] Timestamp: $TIMESTAMP"
 echo "[INFO] Slug: $SLUG"
 
 # Paths NEED TO BE COMPLETE FOR CRON.
-BASE_DIR="C:/Users/robin/OneDrive/Taff/ESILV/S8/AGP - Advanced Git and Python/repo/Polymarket-scrapper-Before"
+BASE_DIR="/home/ubuntu/Polymarket_Scrapper"
 HTML_FILE="$BASE_DIR/db/html/polymarket_loaded_source.html"
 CSV_FILE="$BASE_DIR/db/csv/market_${SLUG}_history.csv"
 FLAT_CSV_FILE="$BASE_DIR/db/csv/market_${SLUG}_flatdata.csv"

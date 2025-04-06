@@ -10,7 +10,8 @@ if len(sys.argv) < 2:
 slug = sys.argv[1]
 url = f"https://polymarket.com/market/{slug}"
 
-output_file = "db/html/polymarket_loaded_source.html"
+base_dir = os.path.dirname(os.path.abspath(__file__))
+output_file = os.path.join(base_dir, "db/html/polymarket_loaded_source.html")
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless = True)
