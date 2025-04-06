@@ -5,13 +5,13 @@ def compute_daily_report(df):
     df["date"] = df["timestamp"].dt.date
 
     daily = df.groupby("date").agg(
-        open_price = ("data_lastTradePrice", "first"),
-        close_price = ("data_lastTradePrice", "last"),
-        volatility = ("data_lastTradePrice", "std"),
-        best_bid_avg = ("data_bestBid", "mean"),
-        best_ask_avg = ("data_bestAsk", "mean"),
-        volume_total = ("data_volume", "last"),
-        liquidity_avg = ("data_liquidity", "mean"),
+        open_price = ("lastTradePrice", "first"),
+        close_price = ("lastTradePrice", "last"),
+        volatility = ("lastTradePrice", "std"),
+        best_bid_avg = ("bestBid", "mean"),
+        best_ask_avg = ("bestAsk", "mean"),
+        volume_total = ("volume", "last"),
+        liquidity_avg = ("liquidity", "mean"),
     )
 
     daily["change_pct"] = ((daily["close_price"] - daily["open_price"]) / daily["open_price"]) * 100
