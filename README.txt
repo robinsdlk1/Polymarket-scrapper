@@ -1,6 +1,5 @@
 This project is a full-stack dashboard built to monitor prediction markets on [Polymarket](https://polymarket.com). It scrapes market data directly from the website (via a headless browser due to heavy JavaScript usage), logs the data as CSV snapshots, and displays key metrics in a live Dash interface.
 
-
 - Data Scraper (`polymkt_id_data_scrapper.sh`)*:
   - Uses a headless Chromium browser (`playwright`) to extract the full HTML content.
   - Parses embedded JSON (`__NEXT_DATA__`) to extract market metrics.
@@ -21,9 +20,9 @@ This project is a full-stack dashboard built to monitor prediction markets on [P
   - The scraper runs every 5 minutes via `crontab`.
   - The web server runs continuously in a `tmux` session on an EC2 instance.
 
-
 Setup Instructions
 
 1. Download the files and requirements, do playwright install. 
-2. Setup the cron job
-3. Run the dashboard.
+2. Update the PATH variables in the .sh script.
+3. Setup the cron job.
+4. Run the dashboard.
