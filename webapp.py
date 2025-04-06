@@ -11,7 +11,7 @@ from daily_report import get_daily_report_table, export_daily_report
 
 # -------- Parameters --------
 MARKET_SLUG = "us-recession-in-2025"
-REFRESH_INTERVAL_SECONDS = 60  # 5 minutes
+REFRESH_INTERVAL_SECONDS = 300  # 5 minutes
 DAILY_REPORT_PATH = f"db/market_{MARKET_SLUG}_daily_report.csv"
 
 # -------- Global variable to track daily update --------
