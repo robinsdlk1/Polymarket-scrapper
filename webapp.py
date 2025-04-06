@@ -244,7 +244,6 @@ def update_layout(n, time_range, selected_metrics_input, strike_price, ma_checkl
     metrics_options = [{"label": col.replace("data_", ""), "value": col} for col in metrics_available]
     default_metrics = [col for col in ["data_lastTradePrice", "data_bestBid", "data_bestAsk"] if col in metrics_available]
     selected_metrics = [m for m in selected_metrics_input if m in metrics_available] if selected_metrics_input else default_metrics
-
     now = datetime.datetime.now(datetime.timezone.utc)
     if now.time() >= datetime.time(hour=19, minute=57):
         if LAST_DAILY_UPDATE_DATE != now.date():
@@ -324,7 +323,7 @@ def update_layout(n, time_range, selected_metrics_input, strike_price, ma_checkl
             put_output = f"Put Exp. Value: ${(1 - P) * max(0, strike_price):.4f}"
 
     return (
-        f"Polymarket Market - {latest.get("data_title", MARKET_SLUG)}",
+        f"Polymarket Market - {latest.get('data_title', MARKET_SLUG)}",
         metrics_options,
         selected_metrics,
         metrics_graphs_content,
